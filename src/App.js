@@ -2,6 +2,7 @@ import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Chat from './components/Chat'
+import Login from './components/Login'
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
           <Route path="/room">
             <Chat />
           </Route>
-          <Route path="/">Login Page</Route>
+          <Route path="/">
+            <Login />
+          </Route>
         </Switch>
       </Router>
     </div>
