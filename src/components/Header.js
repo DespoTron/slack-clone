@@ -34,6 +34,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 10;
 `
 
 const Main = styled.div`
