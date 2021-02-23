@@ -41,4 +41,7 @@ const NewMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
 `
