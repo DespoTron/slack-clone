@@ -19,7 +19,11 @@ function Header({ user, signOut }) {
         <Name>{user.name}</Name>
         <UserImage onClick={signOut}>
           <img
-            src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'}
+            src={
+              user.photo
+                ? user.photo
+                : 'https://pixabay.com/get/gf391205cd9ca37ab001db92bdae65cf11ce29de43c928b60df7c369b527c1e529b257d059bd04a3d619e435c1bd58146_1280.jpg'
+            }
           />
         </UserImage>
       </UserContainer>
@@ -90,6 +94,7 @@ const UserImage = styled.div`
   height: 28px;
   border: 2px solid white;
   border-radius: 3px;
+  cursor: pointer;
 
   img {
     width: 100%;
