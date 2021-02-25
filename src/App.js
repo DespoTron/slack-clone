@@ -7,10 +7,11 @@ import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import styled from 'styled-components'
 import db from './firebase'
+import { auth, provider } from './firebase'
 
 function App() {
   const [rooms, setRooms] = useState([])
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
   const getChannels = () => {
     db.collection('rooms').onSnapshot((snapshot) => {
@@ -19,6 +20,13 @@ function App() {
           return { id: doc.id, name: doc.data().name }
         })
       )
+    })
+  }
+
+  const signOut = () => {
+    auth.signOut().then(() => {
+      localStorage.removeItem('user')
+      setUser(null)
     })
   }
 
@@ -32,19 +40,19 @@ function App() {
     <div className="App">
       <Router>
         {!user ? (
-          <Login />
+          <Login setUser={setUser} />
         ) : (
           <Container>
-            <Header />
+            <Header user={user} signOut={signOut} />
             <Main>
               <Sidebar rooms={rooms} />
               <Switch>
                 <Route path="/room">
                   <Chat />
                 </Route>
-                <Route path="/">
+                {/* <Route path="/">
                   <Login />
-                </Route>
+                </Route> */}
               </Switch>
             </Main>
           </Container>
