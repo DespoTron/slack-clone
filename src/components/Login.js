@@ -1,13 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
+import { auth, provider } from '../firebase'
 
-function Login() {
+function Login(props) {
+  const signIn = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        const newUser = {
+          name: result.user.displayName,
+          photo: result.user.photoURL,
+        }
+        props.setUser(newUser)
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
+  }
+
   return (
     <Container>
       <Content>
         <SlackImg src="http://assets.stickpng.com/images/5cb480cd5f1b6d3fbadece79.png" />
         <h1>Sign in Slack</h1>
-        <SignInButton>Sign In With Google</SignInButton>
+        <SignInButton onClick={() => signIn()}>
+          Sign In With Google
+        </SignInButton>
       </Content>
     </Container>
   )

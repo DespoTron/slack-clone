@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <Router>
         {!user ? (
-          <Login />
+          <Login setUser={setUser} />
         ) : (
           <Container>
             <Header />
